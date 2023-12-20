@@ -1,0 +1,12 @@
+npm install the redux/toolkit and react-redux
+create app/store.js and import into index.js
+Then import Provider from react-redux to wrap around the App component.
+
+Store is just exporting the configureStore.
+
+
+Slices are where you divide up your state. Create a slice, and import the reducer into the store.js.
+
+UseSelector always selects by you giving a function that depends on state, and you doing returning soemthing from it.
+
+New data/features (adding reactions feature) you go change postsSlice. Change initial state, prepare().
