@@ -1,0 +1,3 @@
+[submodule "redux-app"]
+	path = redux-app
+	url = git@github.com:Andrewang492/redux-tutorial.git
