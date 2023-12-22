@@ -11,9 +11,11 @@ import axios from "axios";
 const POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 const postsAdapter = createEntityAdapter({
-    sortComparer: (a, b) => b.date.localeCompare(a.date)
+    sortComparer: (a, b) => b.date.localeCompare(a.date) // put the sorter here isntead of the component(Posts List.)
 })
 
+//added this .getInitialState after introducing postAdapter. No longer need posts array, it is automatically there
+// such and object has an array of ids, and an entities dictionary with the items.
 const initialState = postsAdapter.getInitialState({
     status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
@@ -57,7 +59,7 @@ const postsSlice = createSlice({
     reducers: {
         reactionAdded(state, action) {
             const { postId, reaction } = action.payload
-            const existingPost = state.entities[postId]
+            const existingPost = state.entities[postId] // no longer need the state.posts.find.
             if (existingPost) {
                 existingPost.reactions[reaction]++
             }
@@ -88,7 +90,7 @@ const postsSlice = createSlice({
                 });
 
                 // Add any fetched posts to the array
-                postsAdapter.upsertMany(state, loadedPosts)
+                postsAdapter.upsertMany(state, loadedPosts) // removed .concat
             })
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.status = 'failed'
@@ -113,7 +115,7 @@ const postsSlice = createSlice({
                     coffee: 0
                 }
                 console.log(action.payload)
-                postsAdapter.addOne(state, action.payload)
+                postsAdapter.addOne(state, action.payload) //instead of state.posts.push
             })
             .addCase(updatePost.fulfilled, (state, action) => {
                 if (!action.payload?.id) {
@@ -138,7 +140,7 @@ const postsSlice = createSlice({
 
 //getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {
-    selectAll: selectAllPosts,
+    selectAll: selectAllPosts, // this will already sort using the defined sorter.
     selectById: selectPostById,
     selectIds: selectPostIds
     // Pass in a selector that returns the posts slice of state
@@ -149,8 +151,11 @@ export const getPostsStatus = (state) => state.posts.status;
 export const getPostsError = (state) => state.posts.error;
 export const getCount = (state) => state.posts.count;
 
-export const selectPostsByUser = createSelector(
+export const selectPostsByUser = createSelector( //accepts one or more input functions.
+    // values returned from these function in this array are our dependencies.
     [selectAllPosts, (state, userId) => userId],
+    // the dependencies provide for these two inputs posts, userId.
+    // will only run if paramters are differnet.
     (posts, userId) => posts.filter(post => post.userId === userId)
 )
 

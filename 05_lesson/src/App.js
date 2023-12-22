@@ -27,6 +27,7 @@ function App() {
 
         {/* Catch all - replace with 404 component if you want */}
         <Route path="*" element={<Navigate to="/" replace />} />
+        {/* replace tag replaces the bad address. */}
 
       </Route>
     </Routes>

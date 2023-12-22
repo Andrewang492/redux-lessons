@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { selectPostById } from "./postsSlice";
 
+// changed so we only give postId then select the post, rather than feeding the post itself.
 const PostsExcerpt = ({ postId }) => {
     const post = useSelector(state => selectPostById(state, postId))
 

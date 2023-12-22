@@ -1,0 +1,17 @@
+Got rid of postAdded reducer, because adding post handled with async Thunks.
+
+Remember that 'action creator functions' are the reducers in the reducer field of createSlice.
+
+Created a counter to show performance things. React devtools Profiler. When you record, it shows what renders.
+You may find that other elements are rendering which is not appropriate.
+-- The issue was that posts for a user were refreshing each time counter incremented, even though unrelated.
+useSelector runs everytime action is dispatched - including increasecounter dispatch. And since it would return a new value (the .filter on an array will return a new array, even though with same contents), it requires a new render.
+
+Can also stop components from rerendering by saying ComponentName = React.memo(ComponentName). Will only change if props becomes different.
+
+Normalisation however is recommended - You do not duplicate data, create an ID lookup for items.
+CreateEntityAdapater API. This abstracts more logic from componenets, builtin crud methods, automatic selector generation.
+For all of the cases and reducers that change state, use new adapter methods.
+We can automatically get 
+    selectAll, selectById, selectIds,
+then give them names, instead of writing the seelctors ourselves.
