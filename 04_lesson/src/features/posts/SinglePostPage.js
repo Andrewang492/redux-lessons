@@ -9,9 +9,9 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const SinglePostPage = () => {
-    const { postId } = useParams()
+    const { postId } = useParams() //from url parameter
 
-    const post = useSelector((state) => selectPostById(state, Number(postId)))
+    const post = useSelector((state) => selectPostById(state, Number(postId))) //function passed can only have the state argument. 
 
     if (!post) {
         return (

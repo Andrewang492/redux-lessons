@@ -8,7 +8,7 @@ import { fetchPosts } from './features/posts/postsSlice';
 import { fetchUsers } from './features/users/usersSlice';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-store.dispatch(fetchPosts());
+store.dispatch(fetchPosts()); // get all posts instantly. Otherwise, when you reload the posts disappear.
 store.dispatch(fetchUsers());
 
 ReactDOM.render(
@@ -17,6 +17,7 @@ ReactDOM.render(
       <Router>
         <Routes>
           <Route path="/*" element={<App />} />
+          {/* this asterisk allows nested routes. Created in App.js */}
         </Routes>
       </Router>
     </Provider>

@@ -1,0 +1,2 @@
+index.js gets all Posts now, through dispatch. This means taht reloading does not lose the state.
+in PostsList, no more need for fetchPosts, dispatch and useEffect (all of where fetchPosts is involved).

@@ -9,6 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        {/* The Layout component is the parent to everything else here. */}
 
         <Route index element={<PostsList />} />
 

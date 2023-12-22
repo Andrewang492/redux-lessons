@@ -37,8 +37,8 @@ const EditPostForm = () => {
         if (canSave) {
             try {
                 setRequestStatus('pending')
-                dispatch(updatePost({ id: post.id, title, body: content, userId, reactions: post.reactions })).unwrap()
-
+                dispatch(updatePost({ id: post.id, title, body: content, userId, reactions: post.reactions })).unwrap() //can handle error with unwrap.
+                // not giving a date, it will be reset.
                 setTitle('')
                 setContent('')
                 setUserId('')

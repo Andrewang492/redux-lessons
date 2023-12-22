@@ -10,6 +10,7 @@ const initialState = {
     error: null
 }
 
+// first arg is a label, not a url.
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
     const response = await axios.get(POSTS_URL)
     return response.data
@@ -27,6 +28,7 @@ export const updatePost = createAsyncThunk('posts/updatePost', async (initialPos
         return response.data
     } catch (err) {
         //return err.message;
+        // would give error for new posts since they are not part of the original, public API.
         return initialPost; // only for testing Redux!
     }
 })
@@ -138,7 +140,7 @@ const postsSlice = createSlice({
                 }
                 const { id } = action.payload;
                 action.payload.date = new Date().toISOString();
-                const posts = state.posts.filter(post => post.id !== id);
+                const posts = state.posts.filter(post => post.id !== id); //get rid of old post  from list.
                 state.posts = [...posts, action.payload];
             })
             .addCase(deletePost.fulfilled, (state, action) => {

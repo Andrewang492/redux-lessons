@@ -7,6 +7,7 @@ const Layout = () => {
             <Header />
             <main className="App">
                 <Outlet />
+                {/* If we put this Layout component, we can represent all children */}
             </main>
         </>
     )
