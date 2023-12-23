@@ -1,0 +1,7 @@
+need json-server to read json data.
+json-server --watch data/db.json --port 3500
+
+Create apiSlice, making methods to interact with our API. Like axios. Using createApi function
+Use ApiProvider similar to Provider with store.
+
+Tags and caching.
