@@ -1,4 +1,8 @@
+same project as lesson 5.
+
 switched from using the public jsonplaceholder api to using json-server (used in 06). No more thunks, axios.
+Completely revamp postsSlice. You need to write injectEndpoints instead.
+Change the store as well.
 Changed getSelector call, something because of how the reutrn from getPosts is not the data alone.
 
 Now we have stopped using a lot of dispatches in many components - addpostform, editpostform - and used the api.
